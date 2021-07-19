@@ -2,7 +2,7 @@ def tomcatwebapp = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt
 def tomcatbin = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/bin/'
 def tomcatwebapplc = '/opt/tomcat/latest/webapps/'
 def tomcatbinlc = '/opt/tomcat/latest/bin/'
-def targetfile = '/target/java-tomcat-maven-example.war'
+def targetfile = 'java-tomcat-maven-example/target/java-tomcat-maven-example.war'
 
 pipeline
 {
@@ -58,12 +58,10 @@ pipeline
             {
                 sshagent(credentials: ['3ff179fd-81d7-44f9-9d8c-279ec0f0e991'])
                 {
-                    sh '''
-                        sudo su
-                        cd /opt/tomcat/latest/webapps/
-                        scp -i /target/java-tomcat-maven-example.war
-                    '''
+                    sh "scp ${targetfile} ${tomcatwebapp}"
                     println($tomcatwebapplc)
+                    echo 'War Deployed to target server'
+
                 }
             }
         }
