@@ -58,7 +58,7 @@ pipeline
             {
                 sshagent(credentials: ['3ff179fd-81d7-44f9-9d8c-279ec0f0e991'])
                 {
-                    sh "scp ${targetfile} ${tomcatwebapp}"
+                    sh "scp -o StrictHostKeyChecking=no ${targetfile} ${tomcatwebapp}"
                     println($tomcatwebapplc)
                     echo 'War Deployed to target server'
 
