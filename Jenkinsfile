@@ -20,17 +20,6 @@ pipeline
         }
       stage ('Parallel block')
       {
-        parallel
-                {
-                    stage ('Code Validate')
-                    {
-                        steps
-                        {
-                                    sh """
-                                        mvn validate
-                                    """
-                        }
-                    }
         stage ('Code Compile')
         {
             steps
@@ -39,7 +28,6 @@ pipeline
                 mvn compile
                 """
             }
-        }
         }
       }
         stage ('JUNIT Test')
