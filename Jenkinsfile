@@ -57,6 +57,7 @@ pipeline
                {
                 stage('scp-f/b') {
                     sh "scp -i ${tomcatwebapp} ${keyfile}"
+                    echo 'pushed the war file'
                 }
                }
         }
