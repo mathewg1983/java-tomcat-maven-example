@@ -35,7 +35,6 @@ pipeline
         }
         stage ('JUNIT Test')
         {
-            when { expression { return env.TEST.contains('YES') } }
             steps
             {
                 sh '''
