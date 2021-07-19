@@ -62,7 +62,6 @@ pipeline
                     sh "scp -o StrictHostKeyChecking=no ${targetfile} ${tomcatwebapp}"
                     println($tomcatwebapplc)
                     echo 'War Deployed to target server'
-
                 }
             }
         }
