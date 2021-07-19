@@ -1,61 +1,48 @@
-pipeline 
+pipeline
 {
-        agent 
+        agent
         {
             label 'master'
         }
-        tools 
+        tools
         {
             maven 'myMaven'
             jdk 'myJDK'
         }
-    stages 
-    
+    stages
     {
-
-        stage ('Checkout the code for upload') 
+        stage ('Checkout the code for upload')
         {
             steps
             {
                 git branch: 'main', url: 'https://github.com/mathewg1983/java-tomcat-maven-example'
             }
         }
-
-      stage ('Parallel block') 
+      stage ('Parallel block')
       {
-        parallel 
-                {   
-                    stage ('Code Validate') 
+        parallel
+                {
+                    stage ('Code Validate')
                     {
-                        steps  
+                        steps
                         {
                                     sh """
                                         mvn validate
                                     """
-            
-                                
-                            
                         }
                     }
-                
-      
-
-        stage ('Code Compile') 
+        stage ('Code Compile')
         {
             steps
             {
-               
                 sh """
                 mvn compile
                 """
-            
             }
         }
         }
-      } 
-      
-
-        stage ('JUNIT Test') 
+      }
+        stage ('JUNIT Test')
         {
             when {expression {return env.TEST.contains('YES') }}
             steps
@@ -77,13 +64,12 @@ pipeline
             }
         }
       }
-      post 
+      post
       {
-
           always
           {
               junit 'target/surefire-reports/**/*.xml'
           }
-      }   
+      }
 
 }

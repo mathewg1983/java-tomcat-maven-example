@@ -14,10 +14,16 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
   </dependencies>
   <build>
     <finalName>java-tomcat-maven-example</finalName>
     <plugins>
+    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>3.3.1</version>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
