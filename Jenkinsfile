@@ -49,6 +49,7 @@ pipeline
             {
                 sh '''
                 mvn package
+                ls
                 '''
             }
         }
