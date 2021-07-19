@@ -22,7 +22,8 @@ pipeline
         {
                 steps
             {
-                    sh '''
+                sh '''
+                mvn validate
                 mvn compile
                 '''
             }
