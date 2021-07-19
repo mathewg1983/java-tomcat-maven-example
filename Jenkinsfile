@@ -15,49 +15,46 @@ pipeline
         {
             steps
             {
-                git branch: 'main', url: 'https://github.com/mathewg1983/java-tomcat-maven-example'
+                git branch: 'main', url: 'https://github.com/mathewg1983/java-tomcat-maven-example.git', credentialsId:'gitHUb_Mattu'
             }
         }
-      stage ('Parallel block')
+        stage ('Parallel block')
       {
-        stage ('Code Compile')
+            stage ('Code Compile')
         {
-            steps
+                steps
             {
-                sh """
+                    sh '''
                 mvn compile
-                """
+                '''
             }
         }
       }
         stage ('JUNIT Test')
         {
-            when {expression {return env.TEST.contains('YES') }}
+            when { expression { return env.TEST.contains('YES') } }
             steps
             {
-                sh """
+                sh '''
                 mvn test
-                """
+                '''
             }
         }
-
-        stage ('Packaging') 
+        stage ('Packaging')
         {
-            steps 
+            steps
             {
-                sh """
+                sh '''
                 mvn package
-                """
-
+                '''
             }
         }
-      }
-      post
+    }
+    post
       {
-          always
+        always
           {
-              junit 'target/surefire-reports/**/*.xml'
+            junit 'target/surefire-reports/**/*.xml'
           }
       }
-
 }
