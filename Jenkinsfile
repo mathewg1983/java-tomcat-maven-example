@@ -18,8 +18,7 @@ pipeline
                 git branch: 'main', url: 'https://github.com/mathewg1983/java-tomcat-maven-example.git', credentialsId:'gitHUb_Mattu'
             }
         }
-        stage ('Parallel block')
-      {
+
             stage ('Code Compile')
         {
                 steps
@@ -29,7 +28,6 @@ pipeline
                 '''
             }
         }
-      }
         stage ('JUNIT Test')
         {
             when { expression { return env.TEST.contains('YES') } }
