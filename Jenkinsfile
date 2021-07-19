@@ -15,11 +15,10 @@ pipeline
         {
             steps
             {
-                git branch: 'main', url: 'https://github.com/mathewg1983/java-tomcat-maven-example.git', credentialsId:'gitHUb_Mattu'
+                git branch: 'main', url: 'https://github.com/mathewg1983/java-tomcat-maven-example.git', credentialsId:'c39303ae-a79e-4c81-b109-3b80b73c0f4b'
             }
         }
-
-            stage ('Code Compile')
+        stage ('Code Compile')
         {
                 steps
             {
