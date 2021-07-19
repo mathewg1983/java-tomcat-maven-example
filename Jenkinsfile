@@ -1,6 +1,8 @@
-def tomcatwebapp = "ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/webapps/"
-def tomcatbin = "ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/bin/"
-
+def tomcatwebapp = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/webapps/'
+def tomcatbin = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/bin/'
+def tomcatwebapplc = '/opt/tomcat/latest/webapps/'
+def tomcatbinlc = '/opt/tomcat/latest/bin/'
+def targetfile = '/target/java-tomcat-maven-example.war'
 pipeline
 {
         agent
@@ -50,16 +52,14 @@ pipeline
                 '''
             }
         }
-
         stage ('Deploying onto tomcat')
         {
-            withCredentials([sshUserPrivateKey(credentialsId: '3ff179fd-81d7-44f9-9d8c-279ec0f0e991', keyFileVariable: '/target/java-tomcat-maven-example.war')])
-               {
-                stage('scp-f/b') {
-                    sh "scp -i ${tomcatwebapp} ${keyfile}"
-                    echo 'pushed the war file'
-                }
-               }
+            sshagent(credentials: ['3ff179fd-81d7-44f9-9d8c-279ec0f0e991']) {
+                sh '''
+                cd ${tomcatwebapplc}
+                scp -i  ${targetfile}
+            '''
+            }
         }
     }
 }
