@@ -3,6 +3,7 @@ def tomcatbin = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/to
 def tomcatwebapplc = '/opt/tomcat/latest/webapps/'
 def tomcatbinlc = '/opt/tomcat/latest/bin/'
 def targetfile = '/target/java-tomcat-maven-example.war'
+
 pipeline
 {
         agent
@@ -58,9 +59,11 @@ pipeline
                 sshagent(credentials: ['3ff179fd-81d7-44f9-9d8c-279ec0f0e991'])
                 {
                     sh '''
-                        cd  $tomcatwebapplc
-                        scp -i $targetfile
+
+                        cd /opt/tomcat/latest/bin/
+                        scp -i /target/java-tomcat-maven-example.war
                     '''
+                    println($tomcatwebapplc)
                 }
             }
         }
