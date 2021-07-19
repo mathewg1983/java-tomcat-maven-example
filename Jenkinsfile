@@ -59,8 +59,8 @@ pipeline
                 sshagent(credentials: ['3ff179fd-81d7-44f9-9d8c-279ec0f0e991'])
                 {
                     sh '''
-
-                        cd /opt/tomcat/latest/bin/
+                        sudo su
+                        cd /opt/tomcat/latest/webapps/
                         scp -i /target/java-tomcat-maven-example.war
                     '''
                     println($tomcatwebapplc)
