@@ -1,5 +1,5 @@
-def tomcatwebapp = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/webapps/'
-def tomcatbin = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com/opt/tomcat/latest/bin/'
+def tomcatwebapp = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com:/opt/tomcat/latest/webapps/'
+def tomcatbin = 'ubuntu@http://ec2-54-209-115-168.compute-1.amazonaws.com:/opt/tomcat/latest/bin/'
 def tomcatwebapplc = '/opt/tomcat/latest/webapps/'
 def tomcatbinlc = '/opt/tomcat/latest/bin/'
 def targetfile = 'java-tomcat-maven-example/target/java-tomcat-maven-example.war'
